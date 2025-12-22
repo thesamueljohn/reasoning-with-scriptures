@@ -1,402 +1,511 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Logic of Eden: A Theological Inquiry</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RWS: A Theological Inquiry</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        background: '#050505',
-                        surface: '#0A0A0A',
-                        border: '#1F1F1F',
-                    },
-                    backgroundImage: {
-                        'grid-pattern': "radial-gradient(circle, #27272a 1px, transparent 1px)",
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              background: "#050505",
+              surface: "#0A0A0A",
+              border: "#1F1F1F",
+            },
+            backgroundImage: {
+              "grid-pattern":
+                "radial-gradient(circle, #27272a 1px, transparent 1px)",
+            },
+          },
+        },
+      };
     </script>
 
     <style>
-        body {
-            background-color: #050505;
-            color: #e4e4e7;
-            background-image: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 60%), radial-gradient(circle, rgba(39, 39, 42, 0.5) 1px, transparent 1px);
-            background-size: 100% 100%, 24px 24px;
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+      body {
+        background-color: #050505;
+        color: #e4e4e7;
+        background-image: radial-gradient(
+            circle at 50% 0%,
+            rgba(255, 255, 255, 0.05) 0%,
+            transparent 60%
+          ),
+          radial-gradient(circle, rgba(39, 39, 42, 0.5) 1px, transparent 1px);
+        background-size: 100% 100%, 24px 24px;
+      }
 
-        /* Nav Item Transition */
-        .nav-item {
-            transition: all 0.2s ease;
-            position: relative;
-        }
-        
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            left: -16px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background-color: white;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #27272a;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3f3f46;
+      }
 
-        .nav-item:hover {
-            color: #fff;
-        }
+      /* Nav Item Transition */
+      .nav-item {
+        transition: all 0.2s ease;
+        position: relative;
+      }
 
-        .nav-item.active {
-            color: #fff;
-            text-shadow: 0 0 20px rgba(255,255,255,0.5);
-        }
+      .nav-item::before {
+        content: "";
+        position: absolute;
+        left: -16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: white;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
 
-        .nav-item.active::before {
-            opacity: 1;
-            box-shadow: 0 0 10px rgba(255,255,255,0.8);
-        }
+      .nav-item:hover {
+        color: #fff;
+      }
 
-        /* Glass Card Effect */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
+      .nav-item.active {
+        color: #fff;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      }
 
-        /* Subtle Glow Animation */
-        @keyframes subtle-pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
+      .nav-item.active::before {
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      }
+
+      /* Glass Card Effect */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Subtle Glow Animation */
+      @keyframes subtle-pulse {
+        0%,
+        100% {
+          opacity: 0.5;
         }
-        
-        .animate-glow {
-            animation: subtle-pulse 3s infinite;
+        50% {
+          opacity: 0.8;
         }
+      }
+
+      .animate-glow {
+        animation: subtle-pulse 3s infinite;
+      }
     </style>
-</head>
-<body class="antialiased min-h-screen flex flex-col selection:bg-white selection:text-black overflow-x-hidden">
-
-    <header class="border-b border-white/5 sticky top-0 z-50 backdrop-blur-md bg-[#050505]/80">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <div class="w-6 h-6 bg-white rounded-sm flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-                    <svg class="w-4 h-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                </div>
-                <span class="text-sm font-semibold text-white tracking-tight">The Logic of Eden</span>
-                <span class="hidden sm:inline-flex px-2 py-0.5 bg-white/5 border border-white/10 text-zinc-400 text-[10px] rounded font-medium uppercase tracking-wider">
-                    Inquiry v1.0
-                </span>
-            </div>
-            
-            <button id="resetView" class="group flex items-center gap-2 px-3 py-1.5 rounded bg-white text-black text-xs font-semibold hover:bg-zinc-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.15)]">
-                <span>Overview</span>
-                <span class="bg-black/10 px-1 rounded text-[10px] group-hover:bg-black/20">ESC</span>
-            </button>
+  </head>
+  <body
+    class="antialiased min-h-screen flex flex-col selection:bg-white selection:text-black overflow-x-hidden"
+  >
+    <header
+      class="border-b border-white/5 sticky top-0 z-50 backdrop-blur-md bg-[#050505]/80"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-4">
+          <div
+            class="w-6 h-6 bg-white rounded-sm flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+          >
+            <svg
+              class="w-4 h-4 text-black"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="3"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              />
+            </svg>
+          </div>
+          <span class="text-sm font-semibold text-white tracking-tight"
+            >Reasoning with Scriptures</span
+          >
+          <span
+            class="hidden sm:inline-flex px-2 py-0.5 bg-white/5 border border-white/10 text-zinc-400 text-[10px] rounded font-medium uppercase tracking-wider"
+          >
+            Inquiry v1.0
+          </span>
         </div>
+
+        <button
+          id="resetView"
+          class="group flex items-center gap-2 px-3 py-1.5 rounded bg-white text-black text-xs font-semibold hover:bg-zinc-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+        >
+          <span>Overview</span>
+          <span
+            class="bg-black/10 px-1 rounded text-[10px] group-hover:bg-black/20"
+            >ESC</span
+          >
+        </button>
+      </div>
     </header>
 
-    <main class="flex-grow max-w-6xl mx-auto px-6 py-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <main
+      class="flex-grow max-w-6xl mx-auto px-6 py-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12"
+    >
+      <nav class="lg:col-span-3 flex flex-col gap-8">
+        <div id="navContainer" class="space-y-1"></div>
 
-        <nav class="lg:col-span-3 flex flex-col gap-8">
-            <div id="navContainer" class="space-y-1">
-                </div>
-            
-            <div class="pt-6 border-t border-white/5">
-                <p class="text-[10px] text-zinc-500 uppercase tracking-widest mb-2 font-semibold">Status</p>
-                <div class="flex items-center gap-2 text-xs text-zinc-400">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></span>
-                    <span>System Online</span>
-                </div>
+        <div class="pt-6 border-t border-white/5">
+          <p
+            class="text-[10px] text-zinc-500 uppercase tracking-widest mb-2 font-semibold"
+          >
+            Status
+          </p>
+          <div class="flex items-center gap-2 text-xs text-zinc-400">
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"
+            ></span>
+            <span>System Online</span>
+          </div>
+        </div>
+      </nav>
+
+      <section class="lg:col-span-9 flex flex-col gap-6">
+        <div id="sectionHeader" class="transition-all duration-500">
+          <h2
+            id="sectionTitle"
+            class="text-4xl font-bold text-white mb-3 tracking-tighter"
+          >
+            Welcome to the Inquiry
+          </h2>
+          <p
+            id="sectionDesc"
+            class="text-zinc-400 text-lg font-light leading-relaxed max-w-2xl"
+          >
+            This interactive analysis explores ten critical questions regarding
+            the narrative of Genesis. Select a topic from the left to begin your
+            investigation.
+          </p>
+        </div>
+
+        <div
+          id="textPanel"
+          class="glass-panel p-8 md:p-10 rounded-xl relative overflow-hidden transition-all duration-300 group"
+        >
+          <div
+            class="absolute top-0 right-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-white/10 transition-colors duration-700"
+          ></div>
+
+          <div class="relative z-10 flex items-center justify-between mb-8">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-white rounded-full opacity-50"></span>
+              <span
+                class="text-xs font-mono text-zinc-500 uppercase tracking-widest"
+                >Analysis Output</span
+              >
             </div>
-        </nav>
+            <div id="tagContainer" class="flex gap-2"></div>
+          </div>
 
-        <section class="lg:col-span-9 flex flex-col gap-6">
-            
-            <div id="sectionHeader" class="transition-all duration-500">
-                <h2 id="sectionTitle" class="text-4xl font-bold text-white mb-3 tracking-tighter">Welcome to the Inquiry</h2>
-                <p id="sectionDesc" class="text-zinc-400 text-lg font-light leading-relaxed max-w-2xl">
-                    This interactive analysis explores ten critical questions regarding the narrative of Genesis. Select a topic from the left to begin your investigation.
-                </p>
+          <h3
+            id="questionText"
+            class="relative z-10 text-2xl font-semibold text-white leading-tight mb-6 tracking-tight"
+          >
+            Select a question from the sidebar to view the analysis.
+          </h3>
+
+          <div
+            id="answerText"
+            class="relative z-10 text-zinc-300 leading-8 text-lg font-light"
+          >
+            <p>
+              Explore the logic of Divine Design, the roles of the Agents
+              involved, and the lasting Consequences on humanity.
+            </p>
+          </div>
+
+          <div
+            id="takeawayCard"
+            class="hidden relative z-10 mt-10 p-6 rounded bg-zinc-900/50 border border-white/10"
+          >
+            <div class="flex items-center gap-2 mb-2">
+              <svg
+                class="w-4 h-4 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span
+                class="text-[10px] font-bold text-white uppercase tracking-widest"
+                >Core Insight</span
+              >
             </div>
-
-            <div id="textPanel" class="glass-panel p-8 md:p-10 rounded-xl relative overflow-hidden transition-all duration-300 group">
-                
-                <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-white/10 transition-colors duration-700"></div>
-
-                <div class="relative z-10 flex items-center justify-between mb-8">
-                    <div class="flex items-center gap-2">
-                        <span class="w-2 h-2 bg-white rounded-full opacity-50"></span>
-                        <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest">Analysis Output</span>
-                    </div>
-                    <div id="tagContainer" class="flex gap-2">
-                        </div>
-                </div>
-
-                <h3 id="questionText" class="relative z-10 text-2xl font-semibold text-white leading-tight mb-6 tracking-tight">
-                    Select a question from the sidebar to view the analysis.
-                </h3>
-
-                <div id="answerText" class="relative z-10 text-zinc-300 leading-8 text-lg font-light">
-                    <p>Explore the logic of Divine Design, the roles of the Agents involved, and the lasting Consequences on humanity.</p>
-                </div>
-
-                <div id="takeawayCard" class="hidden relative z-10 mt-10 p-6 rounded bg-zinc-900/50 border border-white/10">
-                    <div class="flex items-center gap-2 mb-2">
-                        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span class="text-[10px] font-bold text-white uppercase tracking-widest">Core Insight</span>
-                    </div>
-                    <p id="takeawayText" class="text-zinc-200 text-base italic"></p>
-                </div>
-
-            </div>
-
-        </section>
-
+            <p id="takeawayText" class="text-zinc-200 text-base italic"></p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="border-t border-white/5 mt-auto py-8 bg-[#050505]">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center text-zinc-600 text-xs">
-            <p>&copy; 2025 The Logic of Eden.</p>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-white transition-colors">Documentation</a>
-                <a href="#" class="hover:text-white transition-colors">Source</a>
-            </div>
+      <div
+        class="max-w-6xl mx-auto px-6 flex justify-between items-center text-zinc-600 text-xs"
+      >
+        <p>&copy; 2025 Reasoning with Scriptures</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-white transition-colors"
+            >Documentation</a
+          >
+          <a href="#" class="hover:text-white transition-colors">Source</a>
         </div>
+      </div>
     </footer>
 
     <script>
-        // Data Store (Unchanged logic, just data)
-        const appData = {
-            categories: [
-                {
-                    id: 'design',
-                    title: 'Divine Design',
-                    desc: 'Exploring the structural choices of God in Eden: the necessity of the Tree, the concept of forgiveness, and the security of the Garden.',
-                    questions: [1, 8, 9]
-                },
-                {
-                    id: 'agents',
-                    title: 'The Agents',
-                    desc: 'Analyzing the roles and culpability of the beings involved: Adam, Eve, the Serpent, and Lucifer.',
-                    questions: [2, 4, 6, 7]
-                },
-                {
-                    id: 'consequences',
-                    title: 'The Consequences',
-                    desc: 'Understanding the aftermath: the severity of punishment, the definition of death, and the inheritance of sin.',
-                    questions: [3, 5, 10]
-                }
-            ],
-           questions: [
-    {
-      id: 1,
-      q: "Why is the forbidden tree in the middle of the garden?",
-      a: "It was not originally a 'forbidden tree' but the 'Tree of the Knowledge of Good and Evil'. Its presence introduces moral choice. Without the option to disobey, obedience would be meaningless and love would be coerced. God placed the tree centrally, not as a trap, but as a visible and genuine alternative—so humanity could freely choose trust and allegiance to God rather than automatic compliance. Love, by definition, requires the possibility of rejection.",
-      tags: ["Freewill", "Choice", "Design"],
-      takeaway: "The tree is not a setup for failure; it is the necessary condition that makes human freedom and genuine love possible."
-    },
-    {
-      id: 2,
-      q: "Why does the devil have easy access to the garden?",
-      a: "God is not an over-protective parent who stifles every form of exposure. He is not a control freak who forces loving him to be their only option.",
-      tags: ["Lucifer", "Access", "Sovereignty"],
-      takeaway: "God allowed access to preserve freedom, not because of a security failure or 'dum-dum'"
-    },
-    {
-      id: 3,
-      q: "Why does God punish them so severely?",
-      a: "The severity corresponds to the nature of the act. The sin was not merely eating a fruit, but rejecting the Source of life, order, and truth. Separation from God naturally results in disorder, decay, and death—much like unplugging a device guarantees shutdown. What appears as punishment is, in large part, the inevitable consequence of disconnection from the sustainer of existence.",
-      tags: ["Suffering", "Justice", "Consequence"],
-      takeaway: "The consequence matches the magnitude of what was lost: direct communion with the Source of life itself."
-    },
-    {
-      id: 4,
-      q: "Can Adam and Eve be blamed? Were they just manipulated children?",
-      a: "Adam and Eve were NOT children in capacity or responsibility. Adam had managerial skills and a level of reasoning to do complex things (naming, recognizing his wife by intuition). Though they lacked experiential knowledge of evil, they were given a clear command, the ability to obey it, and the responsibility to trust God’s word over an external voice.",
-      tags: ["Culpability", "Agency", "Maturity"],
-      takeaway: "Lack of experience with evil does not eliminate moral responsibility when clear instruction is given."
-    },
-    {
-      id: 5,
-      q: "Did God lie about dying on the spot?",
-      a: "God said, 'You shall surely die,' while the serpent claimed, 'You will not die.' The serpent framed death as immediate physical cessation. God defined death more fundamentally—as separation from Him. Spiritual death occurred instantly upon disobedience, and physical death began as an inevitable process from that moment onward. God’s statement was precise (death: spiritual and an initiated bodily decay/aging); the serpent's was deceptive.",
-      tags: ["Truth", "Death", "Spiritual vs Physical"],
-      takeaway: "God spoke accurately about death as separation; the serpent exploited a narrower, misleading definition."
-    },
-    {
-      id: 6,
-      q: "Why punish the serpent if it was just a medium?",
-      a: "Revelation 12:9 calls Satan a dragon and old serpent, saying he deceived the whole world, which is suggestive of a connection beginning to be drawn between Satan and the snake in the Garden of Eden",
-      tags: ["Symbolism", "Medium", "Nature"],
-      takeaway: "There is a connection between the snake and the devil"
-    },
-    {
-      id: 7,
-      q: "Why didn't God punish the devil immediately?",
-      a: "The devil is already under judgment, but divine justice unfolds across a redemptive timeline. Immediate destruction would truncate the unfolding of human history and redemption. His final judgment is certain and reserved for the appointed end. Delayed execution does not mean acquittal.",
-      tags: ["Judgment", "Timing", "Eschatology"],
-      takeaway: "Judgment can be certain without being immediate; delay serves a larger redemptive purpose."
-    },
-    {
-      id: 8,
-      q: "Why didn't God just forgive the first mistake?",
-      a: "Forgiveness without justice undermines moral reality. The act was not a minor error but a transfer of allegiance and authority. True forgiveness requires a mechanism of restoration and a willing return. God immediately initiated that mechanism through the promise of redemption (Genesis 3:15); a seed would come through the woman (Jesus) would come and defeat the devil.",
-      tags: ["Forgiveness", "Atonement", "Redemption"],
-      takeaway: "Forgiveness is costly. God absorbed the cost Himself by initiating redemption immediately."
-    },
-    {
-      id: 9,
-      q: "Why guard Eden after expelling them?",
-      a: "The cherubim guarded access to the Tree of Life to prevent humanity from becoming eternally corrupted. Immortality in a fallen state would lock sin, suffering, and rebellion into permanence. Preventing access was an act of MERCY to keep man 'savable'",
-      tags: ["Mercy", "Protection", "Immortality"],
-      takeaway: "Eden was guarded to prevent eternal corruption, not to withhold blessing."
-    },
-    {
-      id: 10,
-      q: "Why are we born with Original Sin?",
-      a: "Original sin describes an inherited spiritual condition, not inherited guilt. Just as genetic traits pass through generations, humanity inherits a nature shaped by separation from God. Each person is born innocent yet inclined toward self-rule, making eventual sin inevitable. It explains why sin is universal without denying personal responsibility.",
-      tags: ["Original Sin", "Inheritance", "Nature"],
-      takeaway: "We sin because we are born into separation from the Source of life, not because God pre-condemned us."
-    }
-  ]
-        };
+      // Data Store (Unchanged logic, just data)
+      const appData = {
+        categories: [
+          {
+            id: "design",
+            title: "Divine Design",
+            desc: "Exploring the structural choices of God in Eden: the necessity of the Tree, the concept of forgiveness, and the security of the Garden.",
+            questions: [1, 8, 9],
+          },
+          {
+            id: "agents",
+            title: "The Agents",
+            desc: "Analyzing the roles and culpability of the beings involved: Adam, Eve, the Serpent, and Lucifer.",
+            questions: [2, 4, 6, 7],
+          },
+          {
+            id: "consequences",
+            title: "The Consequences",
+            desc: "Understanding the aftermath: the severity of punishment, the definition of death, and the inheritance of sin.",
+            questions: [3, 5, 10],
+          },
+        ],
+        questions: [
+          {
+            id: 1,
+            q: "Why is the forbidden tree in the middle of the garden?",
+            a: "It was not originally a 'forbidden tree' but the 'Tree of the Knowledge of Good and Evil'. Its presence introduces moral choice. Without the option to disobey, obedience would be meaningless and love would be coerced. God placed the tree centrally, not as a trap, but as a visible and genuine alternative—so humanity could freely choose trust and allegiance to God rather than automatic compliance. Love, by definition, requires the possibility of rejection.",
+            tags: ["Freewill", "Choice", "Design"],
+            takeaway:
+              "The tree is not a setup for failure; it is the necessary condition that makes human freedom and genuine love possible.",
+          },
+          {
+            id: 2,
+            q: "Why does the devil have easy access to the garden?",
+            a: "God is not an over-protective parent who stifles every form of exposure. He is not a control freak who forces loving him to be their only option.",
+            tags: ["Lucifer", "Access", "Sovereignty"],
+            takeaway:
+              "God allowed access to preserve freedom, not because of a security failure or 'dum-dum'",
+          },
+          {
+            id: 3,
+            q: "Why does God punish them so severely?",
+            a: "The severity corresponds to the nature of the act. The sin was not merely eating a fruit, but rejecting the Source of life, order, and truth. Separation from God naturally results in disorder, decay, and death—much like unplugging a device guarantees shutdown. What appears as punishment is, in large part, the inevitable consequence of disconnection from the sustainer of existence.",
+            tags: ["Suffering", "Justice", "Consequence"],
+            takeaway:
+              "The consequence matches the magnitude of what was lost: direct communion with the Source of life itself.",
+          },
+          {
+            id: 4,
+            q: "Can Adam and Eve be blamed? Were they just manipulated children?",
+            a: "Adam and Eve were NOT children in capacity or responsibility. Adam had managerial skills and a level of reasoning to do complex things (naming, recognizing his wife by intuition). Though they lacked experiential knowledge of evil, they were given a clear command, the ability to obey it, and the responsibility to trust God’s word over an external voice.",
+            tags: ["Culpability", "Agency", "Maturity"],
+            takeaway:
+              "Lack of experience with evil does not eliminate moral responsibility when clear instruction is given.",
+          },
+          {
+            id: 5,
+            q: "Did God lie about dying on the spot?",
+            a: "God said, 'You shall surely die,' while the serpent claimed, 'You will not die.' The serpent framed death as immediate physical cessation. God defined death more fundamentally—as separation from Him. Spiritual death occurred instantly upon disobedience, and physical death began as an inevitable process from that moment onward. God’s statement was precise (death: spiritual and an initiated bodily decay/aging); the serpent's was deceptive.",
+            tags: ["Truth", "Death", "Spiritual vs Physical"],
+            takeaway:
+              "God spoke accurately about death as separation; the serpent exploited a narrower, misleading definition.",
+          },
+          {
+            id: 6,
+            q: "Why punish the serpent if it was just a medium?",
+            a: "Revelation 12:9 calls Satan a dragon and old serpent, saying he deceived the whole world, which is suggestive of a connection beginning to be drawn between Satan and the snake in the Garden of Eden",
+            tags: ["Symbolism", "Medium", "Nature"],
+            takeaway: "There is a connection between the snake and the devil",
+          },
+          {
+            id: 7,
+            q: "Why didn't God punish the devil immediately?",
+            a: "The devil is already under judgment, but divine justice unfolds across a redemptive timeline. Immediate destruction would truncate the unfolding of human history and redemption. His final judgment is certain and reserved for the appointed end. Delayed execution does not mean acquittal.",
+            tags: ["Judgment", "Timing", "Eschatology"],
+            takeaway:
+              "Judgment can be certain without being immediate; delay serves a larger redemptive purpose.",
+          },
+          {
+            id: 8,
+            q: "Why didn't God just forgive the first mistake?",
+            a: "Forgiveness without justice undermines moral reality. The act was not a minor error but a transfer of allegiance and authority. True forgiveness requires a mechanism of restoration and a willing return. God immediately initiated that mechanism through the promise of redemption (Genesis 3:15); a seed would come through the woman (Jesus) would come and defeat the devil.",
+            tags: ["Forgiveness", "Atonement", "Redemption"],
+            takeaway:
+              "Forgiveness is costly. God absorbed the cost Himself by initiating redemption immediately.",
+          },
+          {
+            id: 9,
+            q: "Why guard Eden after expelling them?",
+            a: "The cherubim guarded access to the Tree of Life to prevent humanity from becoming eternally corrupted. Immortality in a fallen state would lock sin, suffering, and rebellion into permanence. Preventing access was an act of MERCY to keep man 'savable'",
+            tags: ["Mercy", "Protection", "Immortality"],
+            takeaway:
+              "Eden was guarded to prevent eternal corruption, not to withhold blessing.",
+          },
+          {
+            id: 10,
+            q: "Why are we born with Original Sin?",
+            a: "Original sin describes an inherited spiritual condition, not inherited guilt. Just as genetic traits pass through generations, humanity inherits a nature shaped by separation from God. Each person is born innocent yet inclined toward self-rule, making eventual sin inevitable. It explains why sin is universal without denying personal responsibility.",
+            tags: ["Original Sin", "Inheritance", "Nature"],
+            takeaway:
+              "We sin because we are born into separation from the Source of life, not because God pre-condemned us.",
+          },
+        ],
+      };
 
-        // DOM Elements
-        const navContainer = document.getElementById('navContainer');
-        const sectionTitle = document.getElementById('sectionTitle');
-        const sectionDesc = document.getElementById('sectionDesc');
-        const sectionHeader = document.getElementById('sectionHeader');
-        const questionText = document.getElementById('questionText');
-        const answerText = document.getElementById('answerText');
-        const tagContainer = document.getElementById('tagContainer');
-        const takeawayCard = document.getElementById('takeawayCard');
-        const takeawayText = document.getElementById('takeawayText');
-        const resetBtn = document.getElementById('resetView');
-        
-        let activeBtnId = null;
+      // DOM Elements
+      const navContainer = document.getElementById("navContainer");
+      const sectionTitle = document.getElementById("sectionTitle");
+      const sectionDesc = document.getElementById("sectionDesc");
+      const sectionHeader = document.getElementById("sectionHeader");
+      const questionText = document.getElementById("questionText");
+      const answerText = document.getElementById("answerText");
+      const tagContainer = document.getElementById("tagContainer");
+      const takeawayCard = document.getElementById("takeawayCard");
+      const takeawayText = document.getElementById("takeawayText");
+      const resetBtn = document.getElementById("resetView");
 
-        // Init Logic
-        function init() {
-            renderNav();
-            loadOverview();
+      let activeBtnId = null;
+
+      // Init Logic
+      function init() {
+        renderNav();
+        loadOverview();
+      }
+
+      // Render Navigation
+      function renderNav() {
+        navContainer.innerHTML = "";
+        appData.categories.forEach((cat) => {
+          // Category Header
+          const catHeader = document.createElement("div");
+          catHeader.className = `-mt-8 mb-3 px-0 pt-8 text-[11px] font-bold uppercase tracking-widest text-zinc-600`;
+          catHeader.textContent = cat.title;
+          navContainer.appendChild(catHeader);
+
+          // Questions (Styled as minimal list items)
+          cat.questions.forEach((qId) => {
+            const qData = appData.questions.find((q) => q.id === qId);
+            const btn = document.createElement("button");
+
+            btn.id = `nav-btn-${qData.id}`;
+            btn.className =
+              "nav-item w-full text-left py-1.5 text-sm text-zinc-400 hover:text-white flex items-center";
+            btn.innerHTML = `<span class="opacity-30 mr-3 font-mono text-[10px]">0${qData.id}</span> ${qData.q}`;
+
+            btn.onclick = () => {
+              setActiveBtn(qData.id);
+              loadQuestion(qData, cat);
+            };
+            navContainer.appendChild(btn);
+          });
+        });
+      }
+
+      // Handle Active Styling
+      function setActiveBtn(id) {
+        // Remove active class from old button
+        if (activeBtnId) {
+          const oldBtn = document.getElementById(`nav-btn-${activeBtnId}`);
+          if (oldBtn) oldBtn.classList.remove("active");
         }
 
-        // Render Navigation
-        function renderNav() {
-            navContainer.innerHTML = '';
-            appData.categories.forEach(cat => {
-                // Category Header
-                const catHeader = document.createElement('div');
-                catHeader.className = `mt-8 mb-3 px-0 text-[11px] font-bold uppercase tracking-widest text-zinc-600`;
-                catHeader.textContent = cat.title;
-                navContainer.appendChild(catHeader);
-
-                // Questions (Styled as minimal list items)
-                cat.questions.forEach(qId => {
-                    const qData = appData.questions.find(q => q.id === qId);
-                    const btn = document.createElement('button');
-                    
-                    btn.id = `nav-btn-${qData.id}`;
-                    btn.className = "nav-item w-full text-left py-1.5 text-sm text-zinc-400 hover:text-white flex items-center";
-                    btn.innerHTML = `<span class="opacity-30 mr-3 font-mono text-[10px]">0${qData.id}</span> ${qData.q}`;
-                    
-                    btn.onclick = () => {
-                        setActiveBtn(qData.id);
-                        loadQuestion(qData, cat);
-                    };
-                    navContainer.appendChild(btn);
-                });
-            });
+        // Add active class to new button
+        const newBtn = document.getElementById(`nav-btn-${id}`);
+        if (newBtn) {
+          newBtn.classList.add("active");
+          activeBtnId = id;
+        } else {
+          activeBtnId = null;
         }
+      }
 
-        // Handle Active Styling
-        function setActiveBtn(id) {
-            // Remove active class from old button
-            if (activeBtnId) {
-                const oldBtn = document.getElementById(`nav-btn-${activeBtnId}`);
-                if (oldBtn) oldBtn.classList.remove('active');
-            }
-            
-            // Add active class to new button
-            const newBtn = document.getElementById(`nav-btn-${id}`);
-            if (newBtn) {
-                newBtn.classList.add('active');
-                activeBtnId = id;
-            } else {
-                activeBtnId = null;
-            }
+      // Load Question Content
+      function loadQuestion(data, category) {
+        // Update Text
+        sectionTitle.textContent = category.title;
+        sectionDesc.textContent = category.desc;
+
+        questionText.textContent = data.q;
+        answerText.innerHTML = `<p>${data.a}</p>`;
+
+        // Update Tags (Monochrome style)
+        tagContainer.innerHTML = "";
+        data.tags.forEach((tag) => {
+          const span = document.createElement("span");
+          span.className =
+            "px-2 py-0.5 bg-white/5 text-zinc-300 border border-white/10 text-[10px] uppercase tracking-wide rounded";
+          span.textContent = tag;
+          tagContainer.appendChild(span);
+        });
+
+        // Update Takeaway
+        takeawayCard.classList.remove("hidden");
+        takeawayText.textContent = data.takeaway;
+
+        // Mobile Scroll
+        if (window.innerWidth < 1024) {
+          sectionHeader.scrollIntoView({ behavior: "smooth" });
         }
+      }
 
-        // Load Question Content
-        function loadQuestion(data, category) {
-            // Update Text
-            sectionTitle.textContent = category.title;
-            sectionDesc.textContent = category.desc;
-            
-            questionText.textContent = data.q;
-            answerText.innerHTML = `<p>${data.a}</p>`;
-            
-            // Update Tags (Monochrome style)
-            tagContainer.innerHTML = '';
-            data.tags.forEach(tag => {
-                const span = document.createElement('span');
-                span.className = "px-2 py-0.5 bg-white/5 text-zinc-300 border border-white/10 text-[10px] uppercase tracking-wide rounded";
-                span.textContent = tag;
-                tagContainer.appendChild(span);
-            });
+      // Default Overview
+      function loadOverview() {
+        setActiveBtn(null);
+        sectionTitle.textContent = "Welcome to the Inquiry";
+        sectionDesc.textContent =
+          "This interactive analysis explores ten critical questions regarding the narrative of Genesis. Select a topic from the left to begin your investigation.";
+        questionText.textContent = "Select a question from the sidebar.";
+        answerText.innerHTML =
+          "<p>Use the navigation menu to explore specific theological arguments regarding Divine Design, The Agents of Eden, and The Consequences of the Fall.</p>";
+        tagContainer.innerHTML = "";
+        takeawayCard.classList.add("hidden");
+      }
 
-            // Update Takeaway
-            takeawayCard.classList.remove('hidden');
-            takeawayText.textContent = data.takeaway;
-            
-            // Mobile Scroll
-            if(window.innerWidth < 1024) {
-                sectionHeader.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+      resetBtn.addEventListener("click", loadOverview);
 
-        // Default Overview
-        function loadOverview() {
-            setActiveBtn(null);
-            sectionTitle.textContent = "Welcome to the Inquiry";
-            sectionDesc.textContent = "This interactive analysis explores ten critical questions regarding the narrative of Genesis. Select a topic from the left to begin your investigation.";
-            questionText.textContent = "Select a question from the sidebar.";
-            answerText.innerHTML = "<p>Use the navigation menu to explore specific theological arguments regarding Divine Design, The Agents of Eden, and The Consequences of the Fall.</p>";
-            tagContainer.innerHTML = "";
-            takeawayCard.classList.add('hidden');
-        }
-
-        resetBtn.addEventListener('click', loadOverview);
-
-        // Run
-        init();
-
+      // Run
+      init();
     </script>
-</body>
+  </body>
 </html>
